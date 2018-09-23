@@ -15,6 +15,7 @@ class Autocall:
         Autocall.frequency = frequency
         Autocall.strike = strike
         Autocall.barrier = barrier
+        Autocall.coupon = coupon
         Autocall.barrier_type = barrier_type
         Autocall.autocall_trigger = autocall_trigger
         Autocall.coupon_trigger = coupon_trigger

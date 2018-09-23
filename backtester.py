@@ -108,6 +108,7 @@ def backtest(autocall, start_date, end_date):
         except:
             autocall_schedule = [autocall.autocall_trigger]*int((autocall.maturity/autocall.frequency) - autocall.nbr_non_callable_obs)
 
+
         for index, autocall_trigger in enumerate(autocall_schedule):
             if basket_callable_dates['worstof'].loc[callable_dates_str[index]] > autocall_trigger:
                 basket_data[starting_date]['autocall'] = True
@@ -116,6 +117,7 @@ def backtest(autocall, start_date, end_date):
 
         try:
             _ = basket_data[starting_date]['autocall']
+            coupon = coupon ** (1 / ())
         except:
             basket_data[starting_date]['autocall'] = False
 
@@ -125,7 +127,15 @@ def backtest(autocall, start_date, end_date):
         except:
             autocall.coupon_trigger = [autocall.coupon_trigger]*int((autocall.maturity/autocall.frequency))
 
-        # Compute coupon
+
+
+        if basket_data[starting_date]['autocall']:
+            for coupon_date in coupon_dates:
+                if coupon_date == basket_data[starting_date]['autocall_date']:
+                    break
+
+        else:
+            for coupon_date in coupon_dates:
 
 
 

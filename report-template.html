@@ -80,7 +80,18 @@
                   <br>
 
                   <table>
-
+                    <tr>
+                      <td>Underlyings</td>
+                      <td>Apple Inc / Microsoft / 3M</td>
+                    </tr>
+                    <tr>
+                      <td>Maturity</td>
+                      <td>3 years</td>
+                    </tr>
+                    <tr>
+                      <td>Frequency</td>
+                      <td>3 months</td>
+                    </tr>
                   </table>
                 </div>
               </div>
@@ -132,7 +143,6 @@
                     Evolution of the Annualized Rate of Return (% p.a.)
                   </h6>
 
-                  <br>
                   <div id="arr" style="height:20em;"></div>
                   <p>Source : Alphavantage</p>
                 </div>
@@ -142,8 +152,7 @@
                     Early redemption distribution
                   </h6>
 
-                  <br>
-                  <div id="early-redeption" style="height:20em;"></div>
+                  <div id="early-redemption" style="height:20em;"></div>
                   <p>Source : Alphavantage</p>
                 </div>
               </div>
@@ -165,7 +174,6 @@
                     Underlyings historical data
                   </h6>
 
-                  <br>
                   <div id="udl-data" style="height:24em;"></div>
                   <p>Source : Alphavantage</p>
                 </div>
@@ -211,13 +219,78 @@
       "orientation": "h",
       "yanchor": "top"
     },
-    height : 200,
+    height : 220,
     width:340,
     margin : {
       "r": 0,
       "t": 20,
-      "b": 20,
+      "b": 40,
       "l": 20
     } } );
+</script>
+
+
+<script>
+var data = [
+  {
+    x: ['Period 1', 'Period 2', 'Period 3', 'Period 4', 'Period 5', 'Period 6',
+        'Period 7', 'Periode 8','Period 9', 'Periode 10'],
+    y: [20, 14, 23, 20,12,20, 14, 23, 20,12],
+    type: 'bar'
+  }
+];
+
+
+var layout = {
+  bargap : 0.35,
+  font : {
+    family: "Raleway",
+    size: 10
+  },
+  hovermode : "closest",
+  legend : {
+    "x": -0.0228945952895,
+    "y": -0.189563896463,
+    "orientation": "h",
+    "yanchor": "top"
+  },
+  height : 220,
+  width:340,
+  margin : {
+    "r": 30,
+    "t": 20,
+    "b": 40,
+    "l": 20
+  } };
+
+Plotly.newPlot('early-redemption', data, layout);
+</script>
+
+
+<script>
+TESTER = document.getElementById('udl-data');
+Plotly.plot( TESTER, [{
+x: [1, 2, 3, 4, 5],
+y: [1, 2, 4, 8, 16] }], {
+  bargap : 0.35,
+  font : {
+    family: "Raleway",
+    size: 10
+  },
+  hovermode : "closest",
+  legend : {
+    "x": -0.0228945952895,
+    "y": -0.189563896463,
+    "orientation": "h",
+    "yanchor": "top"
+  },
+  height : 260,
+  width:700,
+  margin : {
+    "r": 0,
+    "t": 20,
+    "b": 40,
+    "l": 20
+  } } );
 </script>
 </html>
