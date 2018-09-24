@@ -10,6 +10,7 @@ import os
 import datetime
 from pandas.io.json import json_normalize
 import json
+from test_report import create_report
 
 app = dash.Dash(__name__)
 server = app.server
@@ -229,8 +230,16 @@ app.layout = html.Div([
 
     ], className="mdl-layout mdl-js-layout mdl-layout--fixed-header"),
 
+    html.Div([], style={'display':'none'}, id='output')
+
 ], className="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base")
 
+@app.callback(
+    dash.dependencies.Output('output', 'children'),
+    [dash.dependencies.Input('view-source', 'n_clicks')])
+def set_display_children(nclicks):
+    if nclicks != None:
+        create_report('231')
 
 
 external_css = ["https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en",
