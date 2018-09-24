@@ -104,5 +104,3 @@ def send_mail(sending_email, sending_password, list_emails, subject, html_file, 
         msg['To'] = email
         server.sendmail(sending_email, email, msg.as_string())
     server.quit()
-
-send_mail(sending_email, sending_password,['maxence.coupet@gmail.com'], 'subject','report-template.html','')

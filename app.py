@@ -10,7 +10,7 @@ import os
 import datetime
 from pandas.io.json import json_normalize
 import json
-from test_report import create_report
+from test_report import create_report, send_mail
 
 app = dash.Dash(__name__)
 server = app.server
@@ -240,6 +240,7 @@ app.layout = html.Div([
 def set_display_children(nclicks):
     if nclicks != None:
         create_report('231')
+        send_mail(sending_email, sending_password,['maxence.coupet@gmail.com'], 'subject','report-template.html','231')
 
 
 external_css = ["https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en",
