@@ -5,8 +5,23 @@ command +='--print-to-pdf="D:/Documents/Projets/Python/autocall-backtester/test.
 command += ' D:/Documents/Projets/Python/autocall-backtester/report-template.html'
 
 
-with open('create-pdf.sh') as f:
-    f.write('#!bin/sh \n google-chrome-stable --headless --disable-gpu --print-to-pdf=reportD.pdf report-template.html')
+with open('create-pdf.sh','w') as f:
+    f.write('#!/bin/sh\ngoogle-chrome-stable --headless --disable-gpu --print-to-pdf=reportD.pdf report-template.html')
 
 
 exit_code = subprocess.call(['./create-pdf.sh'])
+
+while True:
+    exit_code = subprocess.call(['./create-pdf.sh'])
+
+    try:
+        exit_code = int(exit_code)
+
+        if exit_code == 0:
+            break
+    except:
+        pass
+
+print('Finished')
+
+
