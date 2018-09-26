@@ -117,9 +117,17 @@ def create_redemption_graph(x,y):
 
 def create_udl_graph(x, y):
 
-    return """data = [{
+    return """var trace1 = {
     x: """ + list_to_string(x) + """,
-    y: """ + list_to_string(y) + """ }];
+    y: """ + list_to_string(y) + """ };
+
+
+    var trace2 = {
+    x: """ + list_to_string(x) + """,
+    y: """ + list_to_string(-1*y) + """ };
+
+
+    data = [trace1, trace2];
 
     layout = {
     bargap : 0.35,
@@ -143,7 +151,7 @@ def create_udl_graph(x, y):
       "l": 20
     } };
 
-    Plotly.newPlot('arr', data, layout, {staticPlot: true});"""
+    Plotly.newPlot('udl', data, layout, {staticPlot: true});"""
 
 
 def create_report(id, autocall, start_date, end_date):
