@@ -41,7 +41,7 @@ def create_report(id, autocall, start_date, end_date):
                                             backtest_begin = start_date.strftime("%d/%m/%Y"),
                                             backtest_end = end_date.strftime("%d/%m/%Y"),
                                             nbr_backtests = 4356,
-                                            js_report = """Plotly.plot( TESTER, [{
+                                            js_script = """Plotly.plot( TESTER, [{
                                         	x: [1, 2, 3, 4, 5],
                                         	y: [1, 2, 4, 8, 16] }], {
                                             bargap : 0.35,
