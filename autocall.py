@@ -6,7 +6,7 @@ def int_to_date(date):
     """
 
     nbr_years = int(date)
-    nbr_months = date - nbr_years
+    nbr_months = (date - nbr_years)*12
     maturity_string = ''
     if nbr_years != 0:
         if nbr_years > 1:
