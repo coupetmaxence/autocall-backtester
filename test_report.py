@@ -37,9 +37,10 @@ def create_report(id, autocall, start_date, end_date):
         # Fill the template and create a specific html file
         with open("reports/report-template"+id+".html", "w") as text_file:
             text_file.write(template.render(date=time.strftime("%d/%m/%Y"),
-                                            product_description = autocall.get_info()),
+                                            product_description = autocall.get_info(),
                                             backtest_begin = start_date.strftime("%d/%m/%Y"),
-                                            backtest_end = end_date.strftime("%d/%m/%Y"))
+                                            backtest_end = end_date.strftime("%d/%m/%Y"),
+                                            nbr_backtests = 4356))
 
 
         with open('create-pdf.sh','w') as f:
