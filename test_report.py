@@ -32,7 +32,7 @@ def list_to_string(base_list):
     try:
         _ = float(base_list[0])
         isNumber = True
-    else:
+    except:
         isNumber = False
 
     result = '['
