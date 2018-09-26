@@ -115,6 +115,36 @@ def create_redemption_graph(x,y):
 
     Plotly.newPlot('early-redemption', data, layout, {staticPlot: true});"""
 
+def create_udl_graph(x, y):
+
+    return """data = [{
+    x: """ + list_to_string(x) + """,
+    y: """ + list_to_string(y) + """ }];
+
+    layout = {
+    bargap : 0.35,
+    font : {
+      family: "Raleway",
+      size: 10
+    },
+    hovermode : "closest",
+    legend : {
+      "x": -0.0228945952895,
+      "y": -0.189563896463,
+      "orientation": "h",
+      "yanchor": "top"
+    },
+    height : 220,
+    width:340,
+    margin : {
+      "r": 0,
+      "t": 20,
+      "b": 40,
+      "l": 20
+    } };
+
+    Plotly.newPlot('arr', data, layout, {staticPlot: true});"""
+
 
 def create_report(id, autocall, start_date, end_date):
     if platform.system() == 'Linux':
@@ -135,7 +165,8 @@ def create_report(id, autocall, start_date, end_date):
                                             nbr_backtests = 4356,
                                             script_arr = create_arr_graph([1,2,3],[4,3,7]),
                                             script_redemption = create_redemption_graph(['Period 1', 'Period 2'],
-                                                                                        [2,4])))
+                                                                                        [2,4]),
+                                            script_udl = create_udl_graph([1,4], [2,3])))
 
 
         with open('create-pdf.sh','w') as f:
@@ -145,8 +176,7 @@ def create_report(id, autocall, start_date, end_date):
             command += 'reports/report-template'+id+'.html'
             f.write(command)
 
-
-
+        # Try to create pdf while the exit code is not success
         while True:
             exit_code = subprocess.call(['./create-pdf.sh'])
 

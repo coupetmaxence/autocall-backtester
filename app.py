@@ -265,7 +265,8 @@ for css in external_css:
     app.css.append_css({"external_url": css})
 
 external_js = ["https://code.getmdl.io/1.3.0/material.min.js",
-                "https://code.jquery.com/jquery-3.2.1.min.js"]
+                "https://code.jquery.com/jquery-3.2.1.min.js",
+                "https://codepen.io/Maxence8/pen/PdvdRe.js"]
 
 for js in external_js:
     app.scripts.append_script({"external_url": js})
