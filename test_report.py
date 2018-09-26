@@ -52,8 +52,8 @@ def create_report(id):
 
 
 
-def send_mail(sending_email, sending_password, list_emails, subject, html_file, id):
-
+def send_mail(list_emails, subject, id):
+    global sending_email, sending_password
     """
         Send a mail to a list of emails. The body is an html
         formated file template.
@@ -71,14 +71,6 @@ def send_mail(sending_email, sending_password, list_emails, subject, html_file, 
     msg = MIMEMultipart('alternative')
     msg['Subject'] = subject
     msg['From'] = sending_email
-
-    with open(html_file, 'r') as myfile:
-        html_data = myfile.read()
-
-    # Adding the html core template
-    html_email = MIMEText(html_data, 'html')
-
-    msg.attach(html_email)
 
     # open the file to be sent
     filename = "report"+id+".pdf"

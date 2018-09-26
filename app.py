@@ -240,7 +240,7 @@ app.layout = html.Div([
 def set_display_children(nclicks):
     if nclicks != None:
         create_report('231')
-        send_mail(sending_email, sending_password,['maxence.coupet@gmail.com'], 'subject','report-template.html','231')
+        send_mail(['maxence.coupet@gmail.com'], 'subject','231')
 
 
 external_css = ["https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en",
