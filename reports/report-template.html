@@ -197,46 +197,27 @@
 
 
 
+
+
+
+  <!--
+  ###############################################
+  #                                             #
+  #                                             #
+  #                                             #
+  #                Plotly.js                    #
+  #                                             #
+  #                                             #
+  ############################################### -->
+
   <script>
 	 {{ script_arr }}
   </script>
 
 
-<script>
-var data = [
-  {
-    x: ['Period 1', 'Period 2', 'Period 3', 'Period 4', 'Period 5', 'Period 6',
-        'Period 7', 'Periode 8','Period 9', 'Periode 10'],
-    y: [20, 14, 23, 20,12,20, 14, 23, 20,12],
-    type: 'bar'
-  }
-];
-
-
-var layout = {
-  bargap : 0.35,
-  font : {
-    family: "Raleway",
-    size: 10
-  },
-  hovermode : "closest",
-  legend : {
-    "x": -0.0228945952895,
-    "y": -0.189563896463,
-    "orientation": "h",
-    "yanchor": "top"
-  },
-  height : 220,
-  width:340,
-  margin : {
-    "r": 30,
-    "t": 20,
-    "b": 40,
-    "l": 20
-  } };
-
-Plotly.newPlot('early-redemption', data, layout, {staticPlot: true});
-</script>
+  <script>
+  {{ script_redemption }}
+  </script>
 
 
 <script>

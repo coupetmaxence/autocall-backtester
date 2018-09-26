@@ -29,9 +29,18 @@ def list_to_string(base_list):
     Convert a list to its string reprensatation
     """
 
+    try:
+        _ = float(base_list[0])
+        isNumber = True
+    else:
+        isNumber = False
+
     result = '['
     for element in base_list:
-        result += str(element) + ','
+        if isNumber:
+            result += str(element) + ','
+        else:
+            result += "'" + str(element) + "',"
 
     return result[:-1] + ']'
 
@@ -68,6 +77,42 @@ def create_arr_graph(x, y):
     Plotly.newPlot('arr', data, layout, {staticPlot: true});"""
 
 
+
+def create_redemption_graph(x,y):
+    """var data = [
+      {
+        x: """ + list_to_string(x) + """,
+        y: """ + list_to_string(y) + """,
+        type: 'bar'
+      }
+    ];
+
+
+    var layout = {
+      bargap : 0.35,
+      font : {
+        family: "Raleway",
+        size: 10
+      },
+      hovermode : "closest",
+      legend : {
+        "x": -0.0228945952895,
+        "y": -0.189563896463,
+        "orientation": "h",
+        "yanchor": "top"
+      },
+      height : 220,
+      width:340,
+      margin : {
+        "r": 30,
+        "t": 20,
+        "b": 40,
+        "l": 20
+      } };
+
+    Plotly.newPlot('early-redemption', data, layout, {staticPlot: true});"""
+
+
 def create_report(id, autocall, start_date, end_date):
     if platform.system() == 'Linux':
 
@@ -85,7 +130,9 @@ def create_report(id, autocall, start_date, end_date):
                                             backtest_begin = start_date.strftime("%d/%m/%Y"),
                                             backtest_end = end_date.strftime("%d/%m/%Y"),
                                             nbr_backtests = 4356,
-                                            script_arr = create_arr_graph([1,2,3],[4,3,7])))
+                                            script_arr = create_arr_graph([1,2,3],[4,3,7]),
+                                            script_redemption = create_redemption_graph(['Period 1', 'Period 2'],
+                                                                                        [2,4])))
 
 
         with open('create-pdf.sh','w') as f:
