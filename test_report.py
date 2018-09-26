@@ -124,7 +124,7 @@ def create_udl_graph(x, y):
 
     var trace2 = {
     x: """ + list_to_string(x) + """,
-    y: """ + list_to_string(-1*y) + """ };
+    y: """ + list_to_string([3,1]) + """ };
 
 
     data = [trace1, trace2];
