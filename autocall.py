@@ -60,7 +60,7 @@ class Autocall:
             else:
                 maturity_string += str(nbr_months) + ' Month'
 
-        return [{'column':'Underlyings','value':underlyings_info},
-                {'column':'Maturity','value':maturity_string},
-                {'column':'Barrier','value':str(self.barrier) + ' %'},
-                {'column':'Strike','value':str(self.strike) + ' %'}]
+        return [{'field':'Underlyings','value':underlyings_info},
+                {'field':'Maturity','value':maturity_string},
+                {'field':'Barrier','value':str(self.barrier) + ' %'},
+                {'field':'Strike','value':str(self.strike) + ' %'}]

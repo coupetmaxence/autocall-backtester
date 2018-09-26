@@ -13,42 +13,59 @@ import pandas as pd
 import numpy as np
 import codecs
 
+import platform
+import jinja2
+import os
+import time
+
 
 sending_email = "finance.newsletter.test@gmail.com"
 sending_password = "aqwxszedc"
 
 
 
-command = 'C:\Program Files (x86)\Google\Chrome\Application\chrome --headless --disable-gpu '
-command +='--print-to-pdf="D:/Documents/Projets/Python/autocall-backtester/test.pdf"'
-command += ' D:/Documents/Projets/Python/autocall-backtester/report-template.html'
+def create_report(id, autocall):
+    if platform.system() == 'Linux':
+
+        latex_jinja_env = jinja2.Environment(
+        	block_start_string = '\BLOCK{',
+        	block_end_string = '}',
+        	variable_start_string = '\VAR{',
+        	variable_end_string = '}',
+        	comment_start_string = '\#{',
+        	comment_end_string = '}',
+        	line_statement_prefix = '%%',
+        	line_comment_prefix = '%#',
+        	trim_blocks = True,
+        	autoescape = False,
+        	loader = jinja2.FileSystemLoader(os.path.abspath('./reports/'))
+        )
+        template = latex_jinja_env.get_template('report-template.html')
+
+        with open("reports/report"+id+".pdf", "w") as text_file:
+            text_file.write(template.render(date=time.strftime("%d/%m/%Y"),
+                                            product_description = autocall.get_info()))
 
 
-def create_report(id):
-
-    with open('create-pdf.sh','w') as f:
-        command = '#!/bin/sh\n'
-        command += 'google-chrome-stable --headless --disable-gpu'
-        command += ' --print-to-pdf=report'+id+'.pdf report-template.html'
-        f.write(command)
-
-
-    exit_code = subprocess.call(['./create-pdf.sh'])
-
-    while True:
-        exit_code = subprocess.call(['./create-pdf.sh'])
-
-        try:
-            exit_code = int(exit_code)
-
-            if exit_code == 0:
-                break
-        except:
-            pass
-
-    print('Finished')
+        with open('create-pdf.sh','w') as f:
+            command = '#!/bin/sh\n'
+            command += 'google-chrome-stable --headless --disable-gpu'
+            command += ' --print-to-pdf=reports/report'+id+'.pdf '
+            command += 'reports/report-template'+id+'.html'
+            f.write(command)
 
 
+
+        while True:
+            exit_code = subprocess.call(['./create-pdf.sh'])
+
+            try:
+                exit_code = int(exit_code)
+
+                if exit_code == 0:
+                    break
+            except:
+                pass
 
 
 
@@ -73,7 +90,7 @@ def send_mail(list_emails, subject, id):
     msg['From'] = sending_email
 
     # open the file to be sent
-    filename = "report"+id+".pdf"
+    filename = "reports/report"+id+".pdf"
     attachment = open(filename, "rb")
 
     # instance of MIMEBase and named as p
