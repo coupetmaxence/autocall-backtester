@@ -29,7 +29,7 @@ def create_report(id):
     with open('create-pdf.sh','w') as f:
         command = '#!/bin/sh\n'
         command += 'google-chrome-stable --headless --disable-gpu'
-        command += '--print-to-pdf=report'+id+'.pdf report-template.html'
+        command += ' --print-to-pdf=report'+id+'.pdf report-template.html'
         f.write(command)
 
 
