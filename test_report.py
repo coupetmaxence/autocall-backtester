@@ -42,7 +42,7 @@ def create_report(id, autocall):
         )
         template = latex_jinja_env.get_template('report-template.html')
 
-        with open("reports/report"+id+".pdf", "w") as text_file:
+        with open("reports/report"+id+".html", "w") as text_file:
             text_file.write(template.render(date=time.strftime("%d/%m/%Y"),
                                             product_description = autocall.get_info()))
 
