@@ -40,7 +40,30 @@ def create_report(id, autocall, start_date, end_date):
                                             product_description = autocall.get_info(),
                                             backtest_begin = start_date.strftime("%d/%m/%Y"),
                                             backtest_end = end_date.strftime("%d/%m/%Y"),
-                                            nbr_backtests = 4356))
+                                            nbr_backtests = 4356,
+                                            js_report = """Plotly.plot( TESTER, [{
+                                        	x: [1, 2, 3, 4, 5],
+                                        	y: [1, 2, 4, 8, 16] }], {
+                                            bargap : 0.35,
+                                            font : {
+                                              family: "Raleway",
+                                              size: 10
+                                            },
+                                            hovermode : "closest",
+                                            legend : {
+                                              "x": -0.0228945952895,
+                                              "y": -0.189563896463,
+                                              "orientation": "h",
+                                              "yanchor": "top"
+                                            },
+                                            height : 220,
+                                            width:340,
+                                            margin : {
+                                              "r": 0,
+                                              "t": 20,
+                                              "b": 40,
+                                              "l": 20
+                                            } }, {staticPlot: true} );"""))
 
 
         with open('create-pdf.sh','w') as f:

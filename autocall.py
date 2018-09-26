@@ -6,7 +6,7 @@ def int_to_date(date):
     """
 
     nbr_years = int(date)
-    nbr_months = (date - nbr_years)*12
+    nbr_months = int((date - nbr_years)*12)
     maturity_string = ''
     if nbr_years != 0:
         if nbr_years > 1:
@@ -74,6 +74,7 @@ class Autocall:
                 {'field':'Maturity','value':int_to_date(self.maturity)},
                 {'field':'Period','value':int_to_date(self.frequency)},
                 {'field':'Barrier','value':str(self.barrier) + ' %'},
+                {'field':'Barrier type','value':self.barrier_type},
                 {'field':'Strike','value':str(self.strike) + ' %'},
                 {'field':'Coupon (p.a.)','value':str(self.coupon) + ' %'},
                 {'field':'Autocall trigger','value':str(self.autocall_trigger) + ' %'},
