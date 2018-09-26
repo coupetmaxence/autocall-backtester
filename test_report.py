@@ -46,6 +46,9 @@ def list_to_string(base_list):
 
 
 
+
+
+
 def create_arr_graph(x, y):
 
     return """data = [{
@@ -79,7 +82,7 @@ def create_arr_graph(x, y):
 
 
 def create_redemption_graph(x,y):
-    """var data = [
+    return """var data = [
       {
         x: """ + list_to_string(x) + """,
         y: """ + list_to_string(y) + """,
