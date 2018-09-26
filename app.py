@@ -11,6 +11,7 @@ import datetime
 from pandas.io.json import json_normalize
 import json
 from test_report import create_report, send_mail
+from autocall import Autocall
 
 app = dash.Dash(__name__)
 server = app.server
@@ -239,7 +240,8 @@ app.layout = html.Div([
     [dash.dependencies.Input('view-source', 'n_clicks')])
 def set_display_children(nclicks):
     if nclicks != None:
-        create_report('231')
+        autocall = Autocall(["MSFT", "AAPL"], 2, 0.5, 100, 70, 'US', 4, 100, 100)
+        create_report('231', autocall)
         send_mail(['maxence.coupet@gmail.com'], 'subject','231')
 
 
