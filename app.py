@@ -12,6 +12,8 @@ from pandas.io.json import json_normalize
 import json
 from test_report import create_report, send_mail
 from autocall import Autocall
+import uuid
+import time
 
 app = dash.Dash(__name__)
 server = app.server
@@ -240,9 +242,13 @@ app.layout = html.Div([
     [dash.dependencies.Input('view-source', 'n_clicks')])
 def set_display_children(nclicks):
     if nclicks != None:
+        start_date = datetime.date(2008, 9, 5)
+        end_date = datetime.date.today()
         autocall = Autocall(["MSFT", "AAPL"], 2, 0.5, 100, 70, 'US', 4, 100, 100)
-        create_report('231', autocall)
-        send_mail(['maxence.coupet@gmail.com'], 'subject','231')
+        id = str(uuid.uuid4())
+        create_report(id, autocall, start_date, end_date)
+        send_mail(['maxence.coupet@gmail.com'],
+                    'Backtest result - ' + time.strftime("%d/%m/%Y"), id)
 
 
 external_css = ["https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en",

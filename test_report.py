@@ -24,17 +24,22 @@ sending_password = "aqwxszedc"
 
 
 
-def create_report(id, autocall):
+def create_report(id, autocall, start_date, end_date):
     if platform.system() == 'Linux':
 
+        # Create environment to find templates
         latex_jinja_env = jinja2.Environment(
-        	loader = jinja2.FileSystemLoader(os.path.abspath('./reports/'))
-        )
+        	loader = jinja2.FileSystemLoader(os.path.abspath('./reports/')))
+
+        # Base template to fill with backtest data
         template = latex_jinja_env.get_template('report-template.html')
 
+        # Fill the template and create a specific html file
         with open("reports/report-template"+id+".html", "w") as text_file:
             text_file.write(template.render(date=time.strftime("%d/%m/%Y"),
-                                            product_description = autocall.get_info()))
+                                            product_description = autocall.get_info()),
+                                            backtest_begin = start_date.strftime("%d/%m/%Y"),
+                                            backtest_end = end_date.strftime("%d/%m/%Y"))
 
 
         with open('create-pdf.sh','w') as f:
@@ -92,6 +97,7 @@ def send_mail(list_emails, subject, id):
     # encode into base64
     encoders.encode_base64(p)
 
+    filename = "backtest-report.pdf"
     p.add_header('Content-Disposition', "attachment; filename= %s" % filename)
 
     # attach the instance 'p' to instance 'msg'
