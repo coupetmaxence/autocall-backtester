@@ -71,8 +71,8 @@ class Autocall:
 
 
         return [{'field':'Underlyings','value':underlyings_info},
-                {'field':'Maturity','value':int_to_date(autocall.maturity)},
-                {'field':'Period','value':int_to_date(autocall.frequency)},
+                {'field':'Maturity','value':int_to_date(self.maturity)},
+                {'field':'Period','value':int_to_date(self.frequency)},
                 {'field':'Barrier','value':str(self.barrier) + ' %'},
                 {'field':'Strike','value':str(self.strike) + ' %'},
                 {'field':'Coupon (p.a.)','value':str(self.coupon) + ' %'},
