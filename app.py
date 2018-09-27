@@ -45,13 +45,13 @@ def create_backtest(nclicks, underlyings, maturity, frequency, strike,
         NBR_CLICKS += 1
         print(underlyings)
         begin_date_string = begin_date_string.split('/')
-        start_date = datetime.date(begin_date_string[2],
-                                    begin_date_string[1],
-                                    begin_date_string[0])
+        start_date = datetime.date(int(begin_date_string[2]),
+                                    int(begin_date_string[1]),
+                                    int(begin_date_string[0]))
         end_date_string = end_date_string.split('/')
-        end_date = datetime.date(end_date_string[2],
-                                    end_date_string[1],
-                                    end_date_string[0])
+        end_date = datetime.date(int(end_date_string[2]),
+                                    int(end_date_string[1]),
+                                    int(end_date_string[0]))
         autocall = Autocall(underlyings, maturity, frequency, strike, barrier,
                             barrier_type, coupon, autocall_trigger, coupon_trigger,
                             nbr_non_callable_obs)
