@@ -164,7 +164,7 @@ def create_report(id, autocall, start_date, end_date, backtest_result):
 
         # Create environment to find templates
         latex_jinja_env = jinja2.Environment(
-        	loader = jinja2.FileSystemLoader(os.path.abspath('./reports/')))
+        	loader = jinja2.FileSystemLoader(os.path.abspath('./')))
 
         # Base template to fill with backtest data
         template = latex_jinja_env.get_template('report-template.html')
@@ -175,7 +175,7 @@ def create_report(id, autocall, start_date, end_date, backtest_result):
                                             product_description = autocall.get_info(),
                                             backtest_begin = start_date.strftime("%d/%m/%Y"),
                                             backtest_end = end_date.strftime("%d/%m/%Y"),
-                                            nbr_backtests = backtest_result['nbr_backtests'],
+                                            nbr_backtests = backtest_result['nbr-backtests'],
                                             script_arr = create_arr_graph([1,2,3],[4,3,7]),
                                             script_redemption = create_redemption_graph(['Period 1', 'Period 2'],
                                                                                         [2,4]),
