@@ -144,7 +144,7 @@ def create_udl_graph(historical_data):
       "x":0.1,
       "y":-0.1,
       "orientation": "h",
-      "yanchor": "top"
+      "yanchor": "top",
       "xanchor" : "center"
     },
     height : 260,
