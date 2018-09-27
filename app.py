@@ -52,9 +52,10 @@ def create_backtest(nclicks, underlyings, maturity, frequency, strike,
         end_date = datetime.date(int(end_date_string[2]),
                                     int(end_date_string[1]),
                                     int(end_date_string[0]))
-        autocall = Autocall(underlyings, maturity, frequency, strike, barrier,
-                            barrier_type, coupon, autocall_trigger, coupon_trigger,
-                            nbr_non_callable_obs)
+        autocall = Autocall(underlyings, float(maturity), float(frequency),
+                            float(strike), float(barrier), barrier_type,
+                            float(coupon), float(autocall_trigger),
+                            float(coupon_trigger), int(nbr_non_callable_obs))
         backtest_result = backtest(autocall, start_date, end_date)
         id = str(uuid.uuid4())
         create_report(id, autocall, start_date, end_date, backtest_result)
