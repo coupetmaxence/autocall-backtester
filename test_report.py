@@ -24,7 +24,7 @@ sending_password = "aqwxszedc"
 
 
 
-def list_to_string(base_list):
+def list_to_string(base_list, ignore_string = False):
     """
     Convert a list to its string reprensatation
     """
@@ -37,7 +37,7 @@ def list_to_string(base_list):
 
     result = '['
     for element in base_list:
-        if isNumber:
+        if isNumber or ignore_string:
             result += str(element) + ','
         else:
             result += "'" + str(element) + "',"
@@ -115,21 +115,21 @@ def create_redemption_graph(x,y):
 
     Plotly.newPlot('early-redemption', data, layout, {staticPlot: true});"""
 
-def create_udl_graph(x, y):
+def create_udl_graph(historical_data):
 
-    return """var trace1 = {
-    x: """ + list_to_string(x) + """,
-    y: """ + list_to_string(y) + """,
-    type: 'scatter'};
+    script = ''
 
+    for index, ticker in enumerate(list(historical_data.columns)):
+        script += 'var ' + ticker + """ = {
+            x : """ + list_to_string(historical_data.index.tolist()) + """,
+            y : """ + list_to_string(historical_data[ticker].tolist()) + """,
+            type : 'scatter'};
 
-    var trace2 = {
-    x: """ + list_to_string(x) + """,
-    y: """ + list_to_string([3,1]) + """,
-    type: 'scatter'};
+            """
 
+    script += 'var data = ' + list_to_string(list(historical_data.columns), True) + ';'
 
-    data = [trace1, trace2];
+    return script + """
 
     layout = {
     bargap : 0.35,
@@ -156,7 +156,7 @@ def create_udl_graph(x, y):
     Plotly.newPlot('udl-data', data, layout, {staticPlot: true});"""
 
 
-def create_report(id, autocall, start_date, end_date):
+def create_report(id, autocall, start_date, end_date, backtest_result):
     if platform.system() == 'Linux':
 
         # Create environment to find templates
@@ -176,7 +176,7 @@ def create_report(id, autocall, start_date, end_date):
                                             script_arr = create_arr_graph([1,2,3],[4,3,7]),
                                             script_redemption = create_redemption_graph(['Period 1', 'Period 2'],
                                                                                         [2,4]),
-                                            script_udl = create_udl_graph([1,4], [2,3])))
+                                            script_udl = create_udl_graph(backtest_result['historical_data'])))
 
 
         with open('create-pdf.sh','w') as f:

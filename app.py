@@ -6,11 +6,14 @@ from app_template import web_app_template
 import datetime
 from test_report import create_report, send_mail
 from autocall import Autocall
+from backtester import backtest
 import uuid
 import time
 
 app = dash.Dash(__name__)
 server = app.server
+
+NBR_CLICKS = 0
 
 
 # Describe the layout, or the UI, of the app
@@ -18,16 +21,24 @@ app.layout = web_app_template()
 
 @app.callback(
     dash.dependencies.Output('output', 'children'),
-    [dash.dependencies.Input('view-source', 'n_clicks')])
-def set_display_children(nclicks):
-    if nclicks != None:
+    [dash.dependencies.Input('view-source', 'n_clicks'),
+    dash.dependencies.Input('udls', 'value')])
+def create_backtest(nclicks, underlyings):
+    global NBR_CLICKS
+
+    if nclicks != None and nclicks != NBR_CLICKS:
+        NBR_CLICKS += 1
+        print(underlyings)
         start_date = datetime.date(2008, 9, 5)
         end_date = datetime.date.today()
-        autocall = Autocall(["MSFT", "AAPL"], 2, 0.5, 100, 70, 'US', 4, 100, 100)
+        autocall = Autocall(underlyings, 2, 0.5, 100, 70, 'US', 4, 100, 100)
+        backtest_result = backtest(autocall, start_date, end_date)
         id = str(uuid.uuid4())
-        create_report(id, autocall, start_date, end_date)
+        create_report(id, autocall, start_date, end_date, backtest_result)
         send_mail(['maxence.coupet@gmail.com'],
-                    'Backtest result - ' + time.strftime("%d/%m/%Y"), id)
+                    'Backtest result - ' + autocall.underlyings_string + time.strftime("%d/%m/%Y"), id)
+
+
 
 
 external_css = ["https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en",

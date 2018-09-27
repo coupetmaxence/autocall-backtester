@@ -1,6 +1,13 @@
 
 import dash_core_components as dcc
 import dash_html_components as html
+import json
+
+
+def get_companies():
+    with open('companies.json') as f:
+        return json.load(f)
+
 
 
 def web_app_template():
@@ -48,12 +55,9 @@ def web_app_template():
             html.Div([
             html.P('Underlyings'),
             dcc.Dropdown(
-            options=[
-                {'label': 'New York City', 'value': 'NYC'},
-                {'label': 'Montréal', 'value': 'MTL'},
-                {'label': 'San Francisco', 'value': 'SF'}
-            ],
-            value='MTL',
+            options=get_companies(),
+            value='',
+            id='udls',
             multi=True
             )], className="mdl-cell mdl-cell--6-col"),
             html.Div([

@@ -29,6 +29,9 @@ def download_data_basket(underlyings, start_date, end_date, maturity):
     # Filter to get only dates of interest
     basket_data = basket_data.loc[start_date.strftime('%Y-%m-%d'):end_date.strftime('%Y-%m-%d')]
 
+    # Historical data
+    hist_data = basket_data.divide(basket_data.ix[0] / 100)
+
     # Compute the last date a backtest should be launched
     last_backtesting_start_date = end_date - datetime.timedelta(weeks=52*maturity)
 
@@ -51,7 +54,7 @@ def download_data_basket(underlyings, start_date, end_date, maturity):
         worstof_baskets[starting_date] = {}
         worstof_baskets[starting_date]['worstof'] = worstof_data
 
-    return worstof_baskets
+    return hist_data, worstof_baskets
 
 
 
@@ -78,9 +81,11 @@ def backtest(autocall, start_date, end_date):
     """
 
     # download backtest historical data
-    basket_data = download_data_basket(autocall.underlyings, start_date,
+    historical_data, basket_data = download_data_basket(autocall.underlyings, start_date,
                                         end_date, autocall.maturity)
+
     print('data downloaded')
+    
     # Check if there has been an autocall and store autocall date
     for starting_date in basket_data.keys():
         starting_datetime = datetime.datetime.strptime(starting_date,'%Y-%m-%d')
@@ -136,6 +141,10 @@ def backtest(autocall, start_date, end_date):
 
         else:
             for coupon_date in coupon_dates:
+                pass
+
+
+        return {'historical-data': historical_data}
 
 
 
@@ -146,11 +155,11 @@ def backtest(autocall, start_date, end_date):
 
 
 
-
-
+"""
 start_date = datetime.date(2008, 9, 5)
 end_date = datetime.date.today()
 autocall = Autocall(["MSFT", "AAPL"], 2, 0.5, 100, 70, 'US', 4, 100, 100)
 #print(download_data_basket(["MSFT","AAPL"], start_date, end_date, 0.5))
 #print(autocall.get_info())
 backtest(autocall, start_date, end_date)
+"""

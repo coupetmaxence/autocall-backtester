@@ -27,6 +27,20 @@ def int_to_date(date):
 
     return maturity_string
 
+def underlyings_to_string(underlyings):
+    """
+    Convert the list of tickers to a string
+    """
+
+    if len(underlyings) == 1:
+        underlyings_info = underlyings[0]
+    else:
+        underlyings_info = ""
+        for index, underlying in enumerate(underlyings):
+            if index != len(underlyings)-1:
+                underlyings_info += underlying + ' / '
+            else:
+                underlyings_info += underlying
 
 
 
@@ -40,6 +54,7 @@ class Autocall:
         """
 
         Autocall.underlyings = underlyings
+        Autocall.underlyings_string = underlyings_to_string(underlyings)
         Autocall.maturity = maturity
         Autocall.frequency = frequency
         Autocall.strike = strike
@@ -59,18 +74,10 @@ class Autocall:
         Returns a formated info table to display on the PDF
         """
 
-        if len(self.underlyings) == 1:
-            underlyings_info = self.underlyings[0]
-        else:
-            underlyings_info = ""
-            for index, underlying in enumerate(self.underlyings):
-                if index != len(self.underlyings)-1:
-                    underlyings_info += underlying + ' / '
-                else:
-                    underlyings_info += underlying
 
 
-        return [{'field':'Underlyings','value':underlyings_info},
+
+        return [{'field':'Underlyings','value':self.underlyings_string},
                 {'field':'Maturity','value':int_to_date(self.maturity)},
                 {'field':'Period','value':int_to_date(self.frequency)},
                 {'field':'Barrier','value':str(self.barrier) + ' %'},
