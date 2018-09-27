@@ -176,7 +176,7 @@ def create_report(id, autocall, start_date, end_date, backtest_result):
                                             script_arr = create_arr_graph([1,2,3],[4,3,7]),
                                             script_redemption = create_redemption_graph(['Period 1', 'Period 2'],
                                                                                         [2,4]),
-                                            script_udl = create_udl_graph(backtest_result['historical_data'])))
+                                            script_udl = create_udl_graph(backtest_result['historical-data'])))
 
 
         with open('create-pdf.sh','w') as f:
