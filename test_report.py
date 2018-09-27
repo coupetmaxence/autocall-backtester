@@ -123,7 +123,8 @@ def create_udl_graph(historical_data):
         script += 'var ' + ticker + """ = {
             x : """ + list_to_string(historical_data.index.tolist()) + """,
             y : """ + list_to_string(historical_data[ticker].tolist()) + """,
-            type : 'scatter'};
+            type : 'scatter',
+            name : '""" + ticker + """'};
 
             """
 
@@ -138,11 +139,13 @@ def create_udl_graph(historical_data):
       size: 10
     },
     hovermode : "closest",
+    showlegend: true,
     legend : {
-      "x":0.35,
+      "x":0.1,
       "y":-0.1,
       "orientation": "h",
       "yanchor": "top"
+      "xanchor" : "center"
     },
     height : 260,
     width:700,
