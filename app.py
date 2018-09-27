@@ -32,7 +32,6 @@ def create_backtest(nclicks, underlyings):
         start_date = datetime.date(2008, 9, 5)
         end_date = datetime.date.today()
         autocall = Autocall(underlyings, 2, 0.5, 100, 70, 'US', 4, 100, 100)
-        print('Backtest result - ' + autocall.underlyings_string + time.strftime("%d/%m/%Y"))
         backtest_result = backtest(autocall, start_date, end_date)
         id = str(uuid.uuid4())
         create_report(id, autocall, start_date, end_date, backtest_result)

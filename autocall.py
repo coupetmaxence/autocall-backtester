@@ -42,6 +42,8 @@ def underlyings_to_string(underlyings):
             else:
                 underlyings_info += underlying
 
+    return underlyings_info
+
 
 
 class Autocall:
