@@ -33,27 +33,32 @@ app.layout = web_app_template()
     dash.dependencies.Input('autocall_trigger', 'value'),
     dash.dependencies.Input('coupon_trigger', 'value'),
     dash.dependencies.Input('begin_date', 'value'),
-    dash.dependencies.Input('end_date', 'value')])
+    dash.dependencies.Input('end_date', 'value'),
+    dash.dependencies.Input('email', 'value')])
 def create_backtest(nclicks, underlyings, maturity, frequency, strike,
                     nbr_non_callable_obs, barrier, barrier_type, coupon,
                     autocall_trigger, coupon_trigger, begin_date_string,
-                    end_date_string):
+                    end_date_string, email):
     global NBR_CLICKS
 
     if nclicks != None and nclicks != NBR_CLICKS:
         NBR_CLICKS += 1
         print(underlyings)
         begin_date_string = begin_date_string.split('/')
-        start_date = datetime.date(begin_date[2], begin_date[1], begin_date[0])
+        start_date = datetime.date(begin_date_string[2],
+                                    begin_date_string[1],
+                                    begin_date_string[0])
         end_date_string = end_date_string.split('/')
-        end_date = datetime.date(end_date[2], end_date[1], end_date[0])
+        end_date = datetime.date(end_date_string[2],
+                                    end_date_string[1],
+                                    end_date_string[0])
         autocall = Autocall(underlyings, maturity, frequency, strike, barrier,
                             barrier_type, coupon, autocall_trigger, coupon_trigger,
                             nbr_non_callable_obs)
         backtest_result = backtest(autocall, start_date, end_date)
         id = str(uuid.uuid4())
         create_report(id, autocall, start_date, end_date, backtest_result)
-        send_mail(['maxence.coupet@gmail.com'],
+        send_mail([email],
                     'Backtest result - ' + autocall.underlyings_string + ' - ' + time.strftime("%d/%m/%Y"), id)
 
 
