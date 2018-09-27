@@ -139,13 +139,13 @@ def create_udl_graph(x, y):
     },
     hovermode : "closest",
     legend : {
-      "x": -0.0228945952895,
-      "y": -0.189563896463,
+      "x":0.35,
+      "y":-0.1,
       "orientation": "h",
       "yanchor": "top"
     },
-    height : 220,
-    width:340,
+    height : 260,
+    width:700,
     margin : {
       "r": 0,
       "t": 20,
