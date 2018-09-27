@@ -26,9 +26,9 @@ app.layout = web_app_template()
     dash.dependencies.Input('maturity', 'value'),
     dash.dependencies.Input('frequency', 'value'),
     dash.dependencies.Input('strike', 'value'),
-    dash.dependencies.Input('non_callable', 'value')
+    dash.dependencies.Input('non_callable', 'value'),
     dash.dependencies.Input('barrier', 'value'),
-    dash.dependencies.Input('barrier_type', 'value')
+    dash.dependencies.Input('barrier_type', 'value'),
     dash.dependencies.Input('coupon', 'value'),
     dash.dependencies.Input('autocall_trigger', 'value'),
     dash.dependencies.Input('coupon_trigger', 'value'),
