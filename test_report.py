@@ -99,8 +99,8 @@ def create_redemption_graph(x,y):
       },
       hovermode : "closest",
       legend : {
-        "x": -0.0228945952895,
-        "y": -0.189563896463,
+        "x":1.5,
+        "y":1,
         "orientation": "h",
         "yanchor": "top"
       },
