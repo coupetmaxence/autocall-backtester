@@ -1,0 +1,360 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,300,600">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://codepen.io/Maxence8/pen/RJrPmb.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://codepen.io/bcd/pen/YaXojL.js"></script>
+  </head>
+  <body>
+    <div class="book">
+        <div class="page">
+            <div class="subpage">
+
+              <!--
+              ###############################################
+              #                                             #
+              #                                             #
+              #                                             #
+              #                    Header                   #
+              #                                             #
+              #                                             #
+              ############################################### -->
+
+              <div class="row gs-header gs-text-header">
+                <div class="twelve columns padded">
+                  <h5>Back-testing Analysis    |    27/09/2018<h5>
+                </div>
+              </div>
+
+              <br>
+
+
+              <!--
+              ###############################################
+              #                                             #
+              #                                             #
+              #                                             #
+              #                 First row                   #
+              #                                             #
+              #                                             #
+              ############################################### -->
+
+
+              <div class="row">
+                <div class="six columns">
+                  <h6 class="gs-header gs-text-header padded">
+                    Product Description
+                  </h6>
+
+                  <br>
+
+                  <p style="text-align:justify">
+                    Autocallable products (‘autocalls’) are structured
+                    products linked to an underlying asset, which can
+                    automatically mature (or ‘kick out’) prior to their
+                    scheduled maturity date if certain pre-determined
+                    market conditions have been met with regard to the
+                    underlying asset.
+                    An autocall is an investment package which comprises
+                    several financial instruments; a zero coupon bond
+                    combined with call and put options referencing the
+                    underlying asset.
+                  </p>
+                </div>
+
+
+                <div class="six columns">
+                  <h6 class="gs-header gs-text-header padded">
+                    Product Details
+                  </h6>
+
+                  <br>
+
+                  <table>
+                    
+                    <tr>
+                      <td>Underlyings</td>
+                      <td>MSFT / AAPL</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Maturity</td>
+                      <td>2 Years</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Period</td>
+                      <td>6 Months</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Barrier</td>
+                      <td>70 %</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Barrier type</td>
+                      <td>US</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Strike</td>
+                      <td>100 %</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Coupon (p.a.)</td>
+                      <td>4 %</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Autocall trigger</td>
+                      <td>100 %</td>
+                    </tr>
+                    
+                    <tr>
+                      <td>Coupon trigger</td>
+                      <td>100 %</td>
+                    </tr>
+                    
+                  </table>
+                </div>
+              </div>
+
+
+              <!--
+              ###############################################
+              #                                             #
+              #                                             #
+              #                                             #
+              #                Second row                   #
+              #                                             #
+              #                                             #
+              ############################################### -->
+
+              <div class="row">
+                <div class="twelve columns">
+                  <h6 class="gs-header gs-text-header padded">
+                    Methodology
+                  </h6>
+
+                  <br>
+
+                  <p style="text-align:justify">
+                    Over the period from 05/09/2008 to
+                    27/09/2018, the returns of
+                    an investments in this product have been simulated.
+                    Each date as been taken as a launch date. 4356
+                    tests
+                    were carried out on similar investments for which
+                    the historical annualized rate of return has been
+                    computed.
+                  </p>
+                </div>
+              </div>
+
+
+              <!--
+              ###############################################
+              #                                             #
+              #                                             #
+              #                                             #
+              #                 Third row                   #
+              #                                             #
+              #                                             #
+              ############################################### -->
+
+              <div class="row">
+                <div class="six columns">
+                  <h6 class="gs-header gs-text-header padded">
+                    Evolution of the Annualized Rate of Return (% p.a.)
+                  </h6>
+
+                  <div id="arr" style="height:20em;"></div>
+                  <p>Source : Alphavantage</p>
+                </div>
+
+                <div class="six columns">
+                  <h6 class="gs-header gs-text-header padded">
+                    Early redemption distribution
+                  </h6>
+
+                  <div id="early-redemption" style="height:20em;"></div>
+                  <p>Source : Alphavantage</p>
+                </div>
+              </div>
+
+
+              <!--
+              ###############################################
+              #                                             #
+              #                                             #
+              #                                             #
+              #                Fourth row                   #
+              #                                             #
+              #                                             #
+              ############################################### -->
+
+              <div class="row">
+                <div class="twelve columns">
+                  <h6 class="gs-header gs-text-header padded">
+                    Underlyings historical data
+                  </h6>
+
+                  <div id="udl-data" style="height:24em;"></div>
+                  <p>Source : Alphavantage</p>
+                </div>
+              </div>
+
+              <br>
+
+              <p style="text-align:justify">
+                Disclaimer : Historical data and simulations are not a reliable
+                indicator for future development. This tool is
+                furnishing "as is". The developper does not provide
+                any warranty of the tool whatsoever, whether express,
+                implied, or statutory, including, but not limited to,
+                any warranty of merchantability or fitness for a
+                particular purpose or any warranty that the contents
+                of the tool will be error-free.
+              </p>
+
+
+            </div>
+
+        </div>
+    </div>
+  </body>
+
+
+
+
+
+
+  <!--
+  ###############################################
+  #                                             #
+  #                                             #
+  #                                             #
+  #                Plotly.js                    #
+  #                                             #
+  #                                             #
+  ############################################### -->
+
+  <script>
+	 data = [{
+    x: [1,2,3],
+    y: [4,3,7] }];
+
+    layout = {
+    bargap : 0.35,
+    font : {
+      family: "Raleway",
+      size: 10
+    },
+    hovermode : "closest",
+    legend : {
+      "x": -0.0228945952895,
+      "y": -0.189563896463,
+      "orientation": "h",
+      "yanchor": "top"
+    },
+    height : 220,
+    width:340,
+    margin : {
+      "r": 0,
+      "t": 20,
+      "b": 40,
+      "l": 20
+    } };
+
+    Plotly.newPlot('arr', data, layout, {staticPlot: true});
+  </script>
+
+  <script>
+  var data = [
+      {
+        x: ['Period 1','Period 2'],
+        y: [2,4],
+        type: 'bar'
+      }
+    ];
+
+
+    var layout = {
+      bargap : 0.35,
+      font : {
+        family: "Raleway",
+        size: 10
+      },
+      hovermode : "closest",
+      legend : {
+        "x":1.5,
+        "y":1,
+        "orientation": "h",
+        "yanchor": "top"
+      },
+      height : 220,
+      width:340,
+      margin : {
+        "r": 30,
+        "t": 20,
+        "b": 40,
+        "l": 20
+      } };
+
+    Plotly.newPlot('early-redemption', data, layout, {staticPlot: true});
+  </script>
+
+  <script>
+	 var trace1 = {
+    x: [1,4],
+    y: [2,3],
+    type: 'scatter'};
+
+
+    var trace2 = {
+    x: [1,4],
+    y: [3,1],
+    type: 'scatter'};
+
+
+    data = [trace1, trace2];
+
+    layout = {
+    bargap : 0.35,
+    font : {
+      family: "Raleway",
+      size: 10
+    },
+    hovermode : "closest",
+    legend : {
+      "x":0.4,
+      "y":-0.01,
+      "orientation": "h",
+      "yanchor": "top"
+    },
+    height : 260,
+    width:700,
+    margin : {
+      "r": 0,
+      "t": 20,
+      "b": 40,
+      "l": 20
+    } };
+
+    Plotly.newPlot('udl-data', data, layout, {staticPlot: true});
+  </script>
+
+
+
+</html>
