@@ -60,7 +60,7 @@ def create_backtest(nclicks, underlyings, maturity, frequency, strike,
         id = str(uuid.uuid4())
         create_report(id, autocall, start_date, end_date, backtest_result)
         send_mail([email],
-                    'Backtest result - ' + autocall.underlyings_string + ' - ' + time.strftime("%d/%m/%Y"), id)
+                    'Backtest result - ' + autocall.underlyings_string + ' - ' + time.strftime("%d/%m/%Y %H:%M"), id)
 
 
 

@@ -175,13 +175,13 @@ def create_report(id, autocall, start_date, end_date, backtest_result):
                                             product_description = autocall.get_info(),
                                             backtest_begin = start_date.strftime("%d/%m/%Y"),
                                             backtest_end = end_date.strftime("%d/%m/%Y"),
-                                            nbr_backtests = 4356,
+                                            nbr_backtests = backtest_result['nbr_backtests'],
                                             script_arr = create_arr_graph([1,2,3],[4,3,7]),
                                             script_redemption = create_redemption_graph(['Period 1', 'Period 2'],
                                                                                         [2,4]),
                                             script_udl = create_udl_graph(backtest_result['historical-data'])))
 
-
+        # Update the script creating the pdf
         with open('create-pdf.sh','w') as f:
             command = '#!/bin/sh\n'
             command += 'google-chrome-stable --headless --disable-gpu'

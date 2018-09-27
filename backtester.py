@@ -84,8 +84,8 @@ def backtest(autocall, start_date, end_date):
     historical_data, basket_data = download_data_basket(autocall.underlyings, start_date,
                                         end_date, autocall.maturity)
 
-    print('data downloaded')
-    
+    nbr_backtests = len(basket_data.keys())
+
     # Check if there has been an autocall and store autocall date
     for starting_date in basket_data.keys():
         starting_datetime = datetime.datetime.strptime(starting_date,'%Y-%m-%d')
@@ -144,7 +144,8 @@ def backtest(autocall, start_date, end_date):
                 pass
 
 
-        return {'historical-data': historical_data}
+        return {'historical-data': historical_data,
+                'nbr-backtests':nbr_backtests}
 
 
 
