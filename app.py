@@ -22,16 +22,34 @@ app.layout = web_app_template()
 @app.callback(
     dash.dependencies.Output('output', 'children'),
     [dash.dependencies.Input('view-source', 'n_clicks'),
-    dash.dependencies.Input('udls', 'value')])
-def create_backtest(nclicks, underlyings):
+    dash.dependencies.Input('udls', 'value'),
+    dash.dependencies.Input('maturity', 'value'),
+    dash.dependencies.Input('frequency', 'value'),
+    dash.dependencies.Input('strike', 'value'),
+    dash.dependencies.Input('non_callable', 'value')
+    dash.dependencies.Input('barrier', 'value'),
+    dash.dependencies.Input('barrier_type', 'value')
+    dash.dependencies.Input('coupon', 'value'),
+    dash.dependencies.Input('autocall_trigger', 'value'),
+    dash.dependencies.Input('coupon_trigger', 'value'),
+    dash.dependencies.Input('begin_date', 'value'),
+    dash.dependencies.Input('end_date', 'value')])
+def create_backtest(nclicks, underlyings, maturity, frequency, strike,
+                    nbr_non_callable_obs, barrier, barrier_type, coupon,
+                    autocall_trigger, coupon_trigger, begin_date_string,
+                    end_date_string):
     global NBR_CLICKS
 
     if nclicks != None and nclicks != NBR_CLICKS:
         NBR_CLICKS += 1
         print(underlyings)
-        start_date = datetime.date(2008, 9, 5)
-        end_date = datetime.date.today()
-        autocall = Autocall(underlyings, 2, 0.5, 100, 70, 'US', 4, 100, 100)
+        begin_date_string = begin_date_string.split('/')
+        start_date = datetime.date(begin_date[2], begin_date[1], begin_date[0])
+        end_date_string = end_date_string.split('/')
+        end_date = datetime.date(end_date[2], end_date[1], end_date[0])
+        autocall = Autocall(underlyings, maturity, frequency, strike, barrier,
+                            barrier_type, coupon, autocall_trigger, coupon_trigger,
+                            nbr_non_callable_obs)
         backtest_result = backtest(autocall, start_date, end_date)
         id = str(uuid.uuid4())
         create_report(id, autocall, start_date, end_date, backtest_result)

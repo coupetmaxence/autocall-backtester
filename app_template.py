@@ -65,6 +65,7 @@ def web_app_template():
             dcc.Input(
             placeholder='Enter maturity',
             type='text',
+            id='maturity',
             value=''
             )], className="mdl-cell mdl-cell--3-col"),
             html.Div([
@@ -72,6 +73,7 @@ def web_app_template():
             dcc.Input(
             placeholder='Enter frequency',
             type='text',
+            id='frequency',
             value=''
             )], className="mdl-cell mdl-cell--3-col"),
             html.Div([
@@ -79,6 +81,7 @@ def web_app_template():
             dcc.Input(
             placeholder='Enter strike',
             type='text',
+            id='strike',
             value=''
             )], className="mdl-cell mdl-cell--3-col"),
             html.Div([
@@ -86,6 +89,7 @@ def web_app_template():
             dcc.Input(
             placeholder='Enter nbr non-callable obs',
             type='text',
+            id='non_callable',
             value=''
             )], className="mdl-cell mdl-cell--3-col"),
             html.Div([
@@ -93,6 +97,7 @@ def web_app_template():
             dcc.Input(
             placeholder='Enter barrier',
             type='text',
+            id='barrier',
             value=''
             )], className="mdl-cell mdl-cell--3-col"),
             html.Div([
@@ -102,13 +107,15 @@ def web_app_template():
                 {'label': 'European', 'value': 'EU'},
                 {'label': 'Daily', 'value': 'DAILY'}
             ],
-            value='EU'
+            value='EU',
+            id='barrier_type',
             )], className="mdl-cell mdl-cell--3-col"),
             html.Div([
             html.P('Autocall trigger'),
             dcc.Input(
             placeholder='Enter autocall trigger',
             type='text',
+            id='autocall_trigger',
             value=''
             )], className="mdl-cell mdl-cell--3-col"),
             html.Div([
@@ -116,6 +123,15 @@ def web_app_template():
             dcc.Input(
             placeholder='Enter coupon trigger',
             type='text',
+            id='coupon_trigger',
+            value=''
+            )], className="mdl-cell mdl-cell--3-col"),
+            html.Div([
+            html.P('Coupon (p.a.)'),
+            dcc.Input(
+            placeholder='Enter coupon',
+            type='text',
+            id='coupon',
             value=''
             )], className="mdl-cell mdl-cell--3-col")
 
@@ -164,8 +180,9 @@ def web_app_template():
             html.Div([
             html.P('Backtesting dates'),
             dcc.Input(
-            placeholder='Beggining date',
+            placeholder='Beggining date (dd/mm/yyyy)',
             type='text',
+            id='begin_date',
             value=''
             )], className="mdl-cell mdl-cell--3-col"),
             html.Div([
@@ -173,6 +190,7 @@ def web_app_template():
             dcc.Input(
             placeholder='Ending date',
             type='text',
+            id='end_date',
             value=''
             )], className="mdl-cell mdl-cell--9-col"),
 
@@ -181,6 +199,7 @@ def web_app_template():
             dcc.Input(
             placeholder='email address',
             type='text',
+            id='email',
             value='')], className="mdl-cell mdl-cell--3-col")
 
 
