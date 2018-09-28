@@ -176,7 +176,8 @@ def create_report(id, autocall, start_date, end_date, backtest_result):
                                             backtest_begin = start_date.strftime("%d/%m/%Y"),
                                             backtest_end = end_date.strftime("%d/%m/%Y"),
                                             nbr_backtests = backtest_result['nbr-backtests'],
-                                            script_arr = create_arr_graph([1,2,3],[4,3,7]),
+                                            script_arr = create_arr_graph(list(backtest_result['arr'].index),
+                                                                            list(backtest_result['arr'].values)),
                                             script_redemption = create_redemption_graph(['Period 1', 'Period 2'],
                                                                                         [2,4]),
                                             script_udl = create_udl_graph(backtest_result['historical-data'])))
