@@ -189,10 +189,11 @@ def backtest(autocall, start_date, end_date):
 
 
 
-
+"""
 start_date = datetime.date(2008, 9, 5)
 end_date = datetime.date.today()
 autocall = Autocall(["MSFT", "AAPL"], 2, 0.5, 100, 70, 'US', 4, 100, 100)
 #print(download_data_basket(["MSFT","AAPL"], start_date, end_date, 0.5))
 #print(autocall.get_info())
 print(backtest(autocall, start_date, end_date))
+"""
