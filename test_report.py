@@ -104,12 +104,12 @@ def create_redemption_graph(x,y):
         "orientation": "h",
         "yanchor": "top"
       },
-      height : 220,
+      height : 240,
       width:340,
       margin : {
-        "r": 30,
+        "r": 50,
         "t": 10,
-        "b": 50,
+        "b": 70,
         "l": 20
       } };
 
