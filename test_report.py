@@ -178,8 +178,9 @@ def create_report(id, autocall, start_date, end_date, backtest_result):
                                             nbr_backtests = backtest_result['nbr-backtests'],
                                             script_arr = create_arr_graph(list(backtest_result['arr'].keys()),
                                                                             list(backtest_result['arr'].values())),
-                                            script_redemption = create_redemption_graph(['Period 1', 'Period 2'],
-                                                                                        [2,4]),
+                                            script_redemption = create_redemption_graph(
+                                                                    list(backtest_result['early_redemption'].keys()),
+                                                                    list(backtest_result['early_redemption'].values())),
                                             script_udl = create_udl_graph(backtest_result['historical-data'])))
 
         # Update the script creating the pdf

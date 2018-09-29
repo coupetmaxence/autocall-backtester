@@ -109,15 +109,13 @@ def backtest(autocall, start_date, end_date):
         starting_datetime = datetime.datetime.strptime(starting_date,'%Y-%m-%d')
         list_dates = list(basket_data[starting_date]['worstof'].index)
         list_dates = [datetime.datetime.strptime(x,'%Y-%m-%d') for x in list_dates]
-        callable_periods = range(autocall.nbr_non_callable_obs+1,int(autocall.maturity/autocall.frequency)+1)
         coupon_periods = range(1,int(autocall.maturity/autocall.frequency)+1)
 
-        callable_dates = [nearest(starting_datetime +
-                                    i*datetime.timedelta(weeks=52*autocall.frequency),
-                                    list_dates) for i in callable_periods]
         coupon_dates = [nearest(starting_datetime +
                                     i*datetime.timedelta(weeks=52*autocall.frequency),
                                     list_dates) for i in coupon_periods]
+        callable_dates = coupon_dates[autocall.nbr_non_callable_obs:-1]
+
 
         callable_dates_str = [x.strftime('%Y-%m-%d') for x in callable_dates]
         coupon_dates_str = [x.strftime('%Y-%m-%d') for x in coupon_dates]
@@ -139,12 +137,11 @@ def backtest(autocall, start_date, end_date):
                 coupon += autocall.coupon * autocall.frequency
 
             # check for autocalls
-            if date_coupon in callable_dates and basket_value > autocall.autocall_trigger:
+            if date_coupon in callable_dates_str and basket_value > autocall.autocall_trigger:
                 basket_data[starting_date]['autocall'] = True
                 break
 
         # Check for barrier event if no autocall
-        print(basket_data[starting_date]['autocall'])
         if basket_data[starting_date]['autocall'] == False:
             end_value = basket_data[starting_date]['worstof']['worstof'].loc[coupon_dates_str[-1]]
             min_value = basket_data[starting_date]['worstof']['worstof'].min()
@@ -162,7 +159,6 @@ def backtest(autocall, start_date, end_date):
                                     str(basket_data[starting_date]['last-period']) +
                                     ' no barrier'] += 1
         else:
-            print('no autocall')
             early_distribution['Period ' + str(basket_data[starting_date]['last-period'])] += 1
 
         coupon = coupon / (basket_data[starting_date]['last-period']*autocall.frequency)
@@ -195,5 +191,5 @@ end_date = datetime.date.today()
 autocall = Autocall(["MSFT", "AAPL"], 2, 0.5, 100, 70, 'US', 4, 100, 100)
 #print(download_data_basket(["MSFT","AAPL"], start_date, end_date, 0.5))
 #print(autocall.get_info())
-print(backtest(autocall, start_date, end_date))
+print(backtest(autocall, start_date, end_date)['early_redemption'])
 """
