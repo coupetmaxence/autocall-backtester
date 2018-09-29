@@ -108,8 +108,8 @@ def create_redemption_graph(x,y):
       width:340,
       margin : {
         "r": 30,
-        "t": 20,
-        "b": 40,
+        "t": 10,
+        "b": 50,
         "l": 20
       } };
 
@@ -153,7 +153,7 @@ def create_udl_graph(historical_data):
       "r": 0,
       "t": 20,
       "b": 40,
-      "l": 20
+      "l": 30
     } };
 
     Plotly.newPlot('udl-data', data, layout, {staticPlot: true});"""
