@@ -188,9 +188,9 @@ def web_app_template():
             html.Div([
             html.P('text', style={'visibility':'hidden'}),
             dcc.Input(
-            placeholder='Ending date',
+            placeholder='To (dd/mm/yyyy)',
             type='text',
-            id='To',
+            id='end_date',
             value=''
             )], className="mdl-cell mdl-cell--9-col"),
 
