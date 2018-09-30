@@ -83,12 +83,13 @@ def create_arr_graph(x, y):
 
 def create_redemption_graph(x,y):
 
-    if len(x) > 8:
+    if len(x) < 8:
         margin_right = 50
         margin_bottom = 70
     else:
+        print('big margin')
         margin_right = 0
-        margin_bottom = 140
+        margin_bottom = 200
 
     return """var data = [
       {
