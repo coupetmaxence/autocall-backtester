@@ -147,7 +147,7 @@ def backtest(autocall, start_date, end_date):
             min_value = basket_data[starting_date]['worstof']['worstof'].min()
 
             barrier_event_eu = autocall.barrier_type == 'EU' and  end_value < autocall.barrier
-            barrier_event_us = autocall.barrier_type == 'US' and min_value < autocall.barrier
+            barrier_event_us = autocall.barrier_type == 'DAILY' and min_value < autocall.barrier
             if barrier_event_eu or barrier_event_us:
                 basket_data[starting_date]['barrier-event'] = True
                 coupon -= min(autocall.strike - end_value, 0)
