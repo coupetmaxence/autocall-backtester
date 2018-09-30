@@ -88,8 +88,8 @@ def create_redemption_graph(x,y):
         margin_bottom = 70
     else:
         print('big margin')
-        margin_right = 0
-        margin_bottom = 200
+        margin_right = 40
+        margin_bottom = 100
 
     return """var data = [
       {
