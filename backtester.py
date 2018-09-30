@@ -150,7 +150,7 @@ def backtest(autocall, start_date, end_date):
             barrier_event_us = autocall.barrier_type == 'DAILY' and min_value < autocall.barrier
             if barrier_event_eu or barrier_event_us:
                 basket_data[starting_date]['barrier-event'] = True
-                coupon -= min(autocall.strike - end_value, 0)
+                coupon -= max(autocall.strike - end_value, 0)
                 early_distribution['Period ' +
                                     str(basket_data[starting_date]['last-period']) +
                                     ' barrier'] += 1
