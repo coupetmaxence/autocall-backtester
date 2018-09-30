@@ -159,7 +159,7 @@ def create_udl_graph(historical_data):
     height : 260,
     width:700,
     margin : {
-      "r": 10,
+      "r": 20,
       "t": 20,
       "b": 40,
       "l": 20
