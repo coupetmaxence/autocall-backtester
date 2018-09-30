@@ -180,7 +180,7 @@ def web_app_template():
             html.Div([
             html.P('Backtesting dates'),
             dcc.Input(
-            placeholder='Beggining date (dd/mm/yyyy)',
+            placeholder='From (dd/mm/yyyy)',
             type='text',
             id='begin_date',
             value=''
@@ -190,7 +190,7 @@ def web_app_template():
             dcc.Input(
             placeholder='Ending date',
             type='text',
-            id='end_date',
+            id='To',
             value=''
             )], className="mdl-cell mdl-cell--9-col"),
 
