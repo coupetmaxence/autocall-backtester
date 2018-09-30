@@ -165,8 +165,10 @@ def backtest(autocall, start_date, end_date):
 
         ARR[starting_date] = coupon
 
-
-
+    for value in ARR.values():
+        if value < 0:
+            print(value)
+    
     for key in early_distribution.keys():
         early_distribution[key] = 100 * early_distribution[key] / nbr_backtests
 
