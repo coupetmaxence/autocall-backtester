@@ -82,6 +82,14 @@ def create_arr_graph(x, y):
 
 
 def create_redemption_graph(x,y):
+
+    if len(x) > 8:
+        margin_right = 50
+        margin_bottom = 70
+    else:
+        margin_right = 20
+        margin_bottom = 100
+
     return """var data = [
       {
         x: """ + list_to_string(x) + """,
@@ -107,9 +115,9 @@ def create_redemption_graph(x,y):
       height : 240,
       width:340,
       margin : {
-        "r": 50,
+        "r": """ + str(margin_right) + """,
         "t": 10,
-        "b": 70,
+        "b": """ + str(margin_bottom) + """,
         "l": 20
       } };
 

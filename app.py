@@ -4,7 +4,7 @@ import dash
 from dash.dependencies import Input, Output
 from app_template import web_app_template
 import datetime
-from test_report import create_report, send_mail
+from report_template import create_report, send_mail
 from autocall import Autocall
 from backtester import backtest
 import uuid

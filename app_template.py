@@ -24,7 +24,7 @@ def web_app_template():
             html.Div([
 
             html.A(['Tool'], className="mdl-layout__tab is-active"),
-            html.A(['About'], href='https://github.com/coupetmaxence/autocall-backtester', className="mdl-layout__tab"),
+            html.A(['About'], href='https://www.linkedin.com/in/maxencecoupet/', className="mdl-layout__tab"),
             ],className="mdl-layout__tab-bar mdl-js-ripple-effect mdl-color--primary-dark")
 
         ], className="mdl-layout__header mdl-layout__header--scroll mdl-color--primary"),
