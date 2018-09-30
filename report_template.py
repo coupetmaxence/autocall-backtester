@@ -158,10 +158,10 @@ def create_udl_graph(historical_data):
     height : 260,
     width:700,
     margin : {
-      "r": 0,
+      "r": 10,
       "t": 20,
       "b": 40,
-      "l": 30
+      "l": 20
     } };
 
     Plotly.newPlot('udl-data', data, layout, {staticPlot: true});"""
