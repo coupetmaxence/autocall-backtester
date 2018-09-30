@@ -83,7 +83,7 @@ def create_arr_graph(x, y):
 
 def create_redemption_graph(x,y):
 
-    if len(x) < 8:
+    if len(x) <= 9:
         margin_right = 50
         margin_bottom = 70
     else:
