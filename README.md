@@ -2,7 +2,7 @@
 Web application creating PDF backtesting reports for autocalls
 
 
-Tool available ![here]{http://vinci-investments.fr:8181}
+Tool available here : http://vinci-investments.fr:8181
 
 
 # Screenshots
